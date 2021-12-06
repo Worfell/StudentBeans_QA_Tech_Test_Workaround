@@ -17,6 +17,7 @@ namespace Student_Beans_Selenium_Test.Core
     [Binding]
     class SpecFlowHooks
     {
+        //Extent calls to allow for Assertion checks
         private static ExtentTest _feature;
         private static ExtentTest _scenario;
         private static ExtentReports _extentReports;
@@ -29,16 +30,15 @@ namespace Student_Beans_Selenium_Test.Core
         [BeforeScenario]
         public void BeforeScenario(ScenarioContext scenarioContext, IObjectContainer objectContainer)
         {
+            //Open Chrome method
             _webDriver = launchBrowser.OpenChrome();
             objectContainer.RegisterInstanceAs<IWebDriver>(_webDriver);
-
-            //_scenarioContext = scenarioContext;
-            //_scenario = _feature.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
+            //Clear stored browser after run
             launchBrowser.Cleanup();
         }
     }
